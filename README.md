@@ -79,7 +79,7 @@ The goal of this project is to build a journal recommender for submission of a s
 **2. journal_finder.ipynb script:** I used a BERT model pretrained on MEDLINE/Pubmed texts which is available on [TensorFlow Hub](https://tfhub.dev/google/experts/bert/pubmed/2) to convert the journal scopes and the user-provided abstract into feature vectors. Then I used cosine similarity values between these vectors to find the most similar scopes
   to the provided abstract.
 
-The scraped scopes can be viewed in the scraped_from_scimago directory, and their encodings (BERT pooled outputs) are available in the journal_scope_encodings directory as .pkl files.
+The scraped scopes can be viewed in the [scraped_from_scimago directory](https://github.com/masadeghi/journal_finder/tree/main/scraped_from_scimago), and their encodings (BERT pooled outputs) are available in the [journal_scope_encodings](https://github.com/masadeghi/journal_finder/tree/main/journal_scope_encodings) directory as .pkl files.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
