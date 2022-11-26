@@ -30,6 +30,7 @@
   <p align="center">
     Based on the cosine similarity between BERT-encoded journal scopes and a user-provided abstract
     <br />
+    <br />
     <a href="https://github.com/masadeghi/journal_finder"><strong>Explore the docs »</strong></a>
     <br />
     <br />
