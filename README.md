@@ -74,25 +74,20 @@
 
 The goal of this project is to build a journal recommender for submission of a scientific manuscript. The recommendations are based on similarities between the scope of the journals and the user-provided abstract of a manuscript. To achieve this, two steps have been taken:
 
-<ul>
-  <li>
-  **scimagojr_scrape.ipynb script:** I scraped scimagojr.com to extract the scope of each journal from it's dedicated webpage on [scimagojr.com](https://www.scimagojr.com/journalrank.php) and stored these scopes in a separate dataset for each subject category: Biochemistry, Genetics and Molecular Biology / Immunology and Microbiology / Medicine / Neuroscience / Pharmacology, Toxicology, and Pharmaceutics.  
-  </li>
-  <li>
-  **journal_finder.ipynb script:** I used a BERT model pretrained on MEDLINE/Pubmed texts which is available on [TensorFlow Hub](https://tfhub.dev/google/experts/bert/pubmed/2) to convert the journal scopes and the user-provided abstract into feature vectors. Then I used cosine similarity values between these vectors to find the most similar scopes
+**1. scimagojr_scrape.ipynb script:** I scraped scimagojr.com to extract the scope of each journal from it's dedicated webpage on [scimagojr.com](https://www.scimagojr.com/journalrank.php) and stored these scopes in a separate dataset for each subject category: Biochemistry, Genetics and Molecular Biology / Immunology and Microbiology / Medicine / Neuroscience / Pharmacology, Toxicology, and Pharmaceutics.  
+
+**2. journal_finder.ipynb script:** I used a BERT model pretrained on MEDLINE/Pubmed texts which is available on [TensorFlow Hub](https://tfhub.dev/google/experts/bert/pubmed/2) to convert the journal scopes and the user-provided abstract into feature vectors. Then I used cosine similarity values between these vectors to find the most similar scopes
   to the provided abstract.
-  </li>
-</ul>
 
 The scraped scopes can be viewed in the scraped_from_scimago directory, and their encodings (BERT pooled outputs) are available in the journal_scope_encodings directory as .pkl files.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 ### Future Steps
 In its current form, the recommendations have a lot of room for improvement! The next step I'm working on is to retrain and finetune the BERT model using journal_scope/abstract pairs from previously published articles on Pubmed to improve model performance.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 ### Built With
