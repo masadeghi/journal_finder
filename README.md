@@ -49,9 +49,6 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
-        <li><a href="#future-steps">Future Steps</a></li>
-      </ul>
-      <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
@@ -75,18 +72,17 @@
 
 The goal of this project is to build a journal recommender for submission of a scientific manuscript. The recommendations are based on similarities between the scope of the journals and the user-provided abstract of a manuscript. To achieve this, two steps have been taken:
 
-**1. scimagojr_scrape.ipynb script:** I scraped scimagojr.com to extract the scope of each journal from it's dedicated webpage on [scimagojr.com](https://www.scimagojr.com/journalrank.php) and stored these scopes in a separate dataset for each subject category: Biochemistry, Genetics and Molecular Biology / Immunology and Microbiology / Medicine / Neuroscience / Pharmacology, Toxicology, and Pharmaceutics.  
-
-**2. journal_finder.ipynb script:** I used a BERT model pretrained on MEDLINE/Pubmed texts which is available on [TensorFlow Hub](https://tfhub.dev/google/experts/bert/pubmed/2) to convert the journal scopes and the user-provided abstract into feature vectors. Then I used cosine similarity values between these vectors to find the most similar scopes
-  to the provided abstract.
-
-The scraped scopes can be viewed in the [scraped_from_scimago](https://github.com/masadeghi/journal_finder/tree/main/scraped_from_scimago) directory, and their encodings (BERT pooled outputs) are available in the [journal_scope_encodings](https://github.com/masadeghi/journal_finder/tree/main/journal_scope_encodings) directory as .pkl files.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+**1. scimagojr_scrape.ipynb script:** I scraped scimagojr.com to extract the scope of each journal from it's dedicated webpage on [scimagojr.com](https://www.scimagojr.com/journalrank.php) and stored these scopes in a separate dataset for each subject category: Biochemistry, Genetics and Molecular Biology / Immunology and Microbiology / Medicine / Neuroscience / Pharmacology, Toxicology, and Pharmaceutics.
+> The scraped scopes can be viewed in the [scraped_from_scimago](https://github.com/masadeghi/journal_finder/tree/main/scraped_from_scimago) directory
 
 
-### Future Steps
-In its current form, the recommendations have a lot of room for improvement! The next step I'm working on is to retrain and finetune the BERT model using journal_scope/abstract pairs from previously published articles on Pubmed to improve model performance.
+**2. journal_finder.ipynb script:** I used a BERT model pretrained on MEDLINE/Pubmed texts which is available on [TensorFlow Hub](https://tfhub.dev/google/experts/bert/pubmed/2) to convert the journal scopes and the user-provided abstract into feature vectors. Then I used cosine similarity values between these vectors to find the most similar scopes to the provided abstract.
+> The encodings of the journal_scopes using the TensorFlow Hub BERT expert (BERT pooled outputs) are available in the [journal_scope_encodings](https://github.com/masadeghi/journal_finder/tree/main/journal_scope_encodings) directory as .pkl files.
+
+
+  **3. finetuned_BERT_journal_recommender.ipynb script:** I used a PubMedBERT sentence similarity model pretrained on MNLI, SNLI, SCINLI, SCITAIL, MEDNLI, and STSB texts which is available on [Hugging Face](https://huggingface.co/pritamdeka/PubMedBERT-mnli-snli-scinli-scitail-mednli-stsb) and finetuned it with [abstract, journal_scope] pairs scraped from Pubmed. The finetuned model was then used to convert the journal scopes and the user-provided abstract into feature vectors, which were then compared using cosine similarity to find the most similar scopes to the provided abstract.
+> Abstracts scraped from PubMed can be downloaded using [this link](https://drive.google.com/file/d/18a8qnM37rwKbAXZEHOdQZhp9dldbjtCt/view?usp=share_link).
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -103,8 +99,11 @@ In its current form, the recommendations have a lot of room for improvement! The
 <!-- GETTING STARTED -->
 ## Getting Started
 
-If you want to test the final functionality (journal recommendation system), import the .pkl dictionaries to the journal_finder.ipynb script and skip to the
-"Define function that computes similarity ..." section.
+**journal_finder.ipynb script:** If you want to test the final functionality (journal recommendation system), import the .pkl dictionaries to the journal_finder.ipynb script and skip to the "Define function that computes similarity ..." section.
+
+**finetuned_BERT_journal_recommender.ipynb:** You could skip the scraping section in this notebook as well. Upload the Pubmed data to your Drive or Colab and then skip to "Alternatively, use the presaved ..." section.
+
+
 
 ### Installation
 
